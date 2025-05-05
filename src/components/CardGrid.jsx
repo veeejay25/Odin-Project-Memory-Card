@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchGifs } from "../api/fetchCards";
+import Card from "./Card";
+import shuffle from "../utils/shuffle";
 
-function CardGrid() {
+function CardGrid({ handleCardClick }) {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadCards() {
       const gifs = await fetchGifs("cats");
-      setCards(gifs);
+      setCards(shuffle(gifs));
       setLoading(false);
     }
 
@@ -18,9 +20,23 @@ function CardGrid() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="grid">
+    <div
+      className="grid"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
+        gap: "16px",
+        padding: "1rem",
+      }}
+    >
       {cards.map((card) => (
-        <img key={card.id} src={card.imageUrl} alt={card.title} />
+        <Card
+          key={card.id}
+          id={card.id}
+          imageUrl={card.imageUrl}
+          title={card.title}
+          onClick={handleCardClick}
+        />
       ))}
     </div>
   );
