@@ -28,7 +28,7 @@ function App() {
         setBestScore(newScore);
       }
 
-      if (currentScore === TOTAL_CARDS) {
+      if (newScore === TOTAL_CARDS) {
         setWinMessage("Congratulations you found all the  cards!");
       }
     }
@@ -38,6 +38,7 @@ function App() {
     setCurrentScore(0);
     setClickedCards([]);
     setGameOverMessage("");
+    setWinMessage("");
   }
 
   return (
@@ -48,6 +49,9 @@ function App() {
 
       {gameOverMessage && (
         <GameOverModal message={gameOverMessage} onClose={handleRestart} />
+      )}
+      {winMessage && (
+        <SuccessModal message={winMessage} onClose={handleRestart} />
       )}
     </div>
   );

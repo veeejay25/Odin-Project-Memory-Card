@@ -25,8 +25,8 @@ export default function SuccessModal({ message, onClose }) {
           boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
         }}
       >
-        <h2>🎉 You Win!</h2>
-        <p style={{ margin: "1rem 0" }}>{message}</p>
+        <h2 style={{ color: "black" }}>🎉 You Win!</h2>
+        <p style={{ margin: "1rem 0", color: "black" }}>{message}</p>
         <button
           onClick={onClose}
           style={{
@@ -35,7 +35,7 @@ export default function SuccessModal({ message, onClose }) {
             border: "none",
             borderRadius: "4px",
             cursor: "pointer",
-            background: "#28a745",
+            background: "black",
             color: "#fff",
           }}
         >
