@@ -1,15 +1,18 @@
 // src/App.jsx
-import { useState } from "react";
+import { use, useState } from "react";
 import "./App.css";
 import Scoreboard from "./components/Scoreboard";
 import CardGrid from "./components/CardGrid";
+import SuccessModal from "./components/SuccessModal";
 import GameOverModal from "./components/GameOverModal";
 import { getBestScore, setBestScore } from "./utils/storage";
 
 function App() {
+  const TOTAL_CARDS = 12;
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScoreState] = useState(() => getBestScore());
   const [clickedCards, setClickedCards] = useState([]);
+  const [winMessage, setWinMessage] = useState("");
   const [gameOverMessage, setGameOverMessage] = useState("");
 
   function handleCardClick(id) {
@@ -23,6 +26,10 @@ function App() {
       if (newScore > bestScore) {
         setBestScoreState(newScore);
         setBestScore(newScore);
+      }
+
+      if (currentScore === TOTAL_CARDS) {
+        setWinMessage("Congratulations you found all the  cards!");
       }
     }
   }
