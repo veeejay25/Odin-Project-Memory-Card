@@ -5,10 +5,13 @@ function Card({ id, imageUrl, title, onClick }) {
       onClick={() => onClick(id)}
       style={{
         cursor: "pointer",
-        padding: "10px",
+        width: "150px",
+        height: "150px",
+        overflow: "hidden",
         borderRadius: "8px",
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
         backgroundColor: "#fff",
+        position: "relative",
         transition: "transform 0.2s ease",
       }}
     >
@@ -17,22 +20,33 @@ function Card({ id, imageUrl, title, onClick }) {
         alt={title}
         style={{
           width: "100%",
-          height: "auto",
-          borderRadius: "4px",
-          marginBottom: "0.5rem",
+          height: "100%",
+          objectFit: "cover",
         }}
       />
       {title && (
-        <p
+        <div
           style={{
-            textAlign: "center",
-            fontSize: "0.9rem",
-            color: "#333",
-            margin: 0,
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "1.5rem",
+            background: "rgba(0,0,0,0.6)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0 0.5rem",
+            boxSizing: "border-box",
+            color: "#fff",
+            fontSize: "0.6rem",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {title}
-        </p>
+        </div>
       )}
     </div>
   );
